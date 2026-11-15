@@ -1,0 +1,15 @@
+services:
+  traffic-api:
+    build: .
+    container_name: nyc-traffic-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - traffic-data:/srv/data
+      # 样例与脚本挂进去，方便在容器内复现演示
+      - ./samples:/srv/samples:ro
+      - ./scripts:/srv/scripts:ro
+    restart: unless-stopped
+
+volumes:
+  traffic-data:
